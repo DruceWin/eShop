@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eShop</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+<div class="main__header">
+  <a href="{% url 'base:basePage' %}" class="main__header-a">eShop</a>
+</div>
+<div class="navbar">
+    {% if user.is_superuser %}
+    <a href="http://127.0.0.1:8000/admin/" class="header-a">Администрирование</a>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <a href="{% url 'shortURL:make_short_url' %}">Сделать короткую ссылку</a>
+    <div class="dropdown">
+        <button class="dropbtn">
+            <a href="{% url 'users:profile' %}">Профиль</a>
+        </button>
+        <div class="dropdown-content">
+            <a href="{% url 'users:change_profile' %}">Редактировать личные данные</a>
+            <a href="{% url 'users:change_password' %}">Сменить пароль</a>
+            <a href="{% url 'users:logout' %}">Выйти</a>
+        </div>
+    </div>
+    {% else %}
+    <a href="{% url 'users:login' %}">Войти</a>
+    <a href="{% url 'users:register' %}">Зарегистрироваться</a>
+    {% endif %}
+</div>
+{% block content %}
+{% endblock %}
+</body>
+</html>

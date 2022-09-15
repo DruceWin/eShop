@@ -1,0 +1,9 @@
+{% extends "basePage.html" %}
+{% block content %}
+    <div class="item__user" >
+        <h3 class="item__user-a">Имя пользователя: {{user.username}}</h3>
+        <h3 class="item__user-a">Email: {{user.email}}</h3>
+        <h3 class="item__user-a">Телефон: {{user.phone}}</h3>
+        <h3 class="item__user-a">ФИО: {{user.first_name}} {{user.last_name}}</h3>
+    </div>
+{% endblock %}
